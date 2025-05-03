@@ -51,10 +51,10 @@ To use images in the project:
 
 ## 📸 Sample Screenshots
 
-> Add screenshots of your project here for visual context:
+
 
 ```markdown
-![Student Dashboard](./frontend/src/assets/student-dashboard.png)
+![Student Dashboard](./frontend/src/assets/Screenshot (7).png)
 ![Recruiter Dashboard](./frontend/src/assets/recruiter-dashboard.png)
 ```
 
