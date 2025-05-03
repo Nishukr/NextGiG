@@ -51,11 +51,17 @@ To use images in the project:
 
 ## Dashboards
 
+### Student Homepage
+![Student Homepage](frontend/src/assets/Screenshot (7).png)
+
 ### Student Dashboard
-![Student Dashboard](frontend/src/assets/Screenshot%20(7).png)
+![Student Dashboard](frontend/src/assets/Screenshot (6).png)
+
+### Student Jobspage
+![Student Jobspage](frontend/src/assets/Screenshot (9).png)
 
 ### Recruiter Dashboard
-![Recruiter Dashboard](frontend/src/assets/recruiter-dashboard.png)
+![Recruiter Dashboard](frontend/src/assets/Screenshot (8).png)
 
 
 ## 🚀 Getting Started
