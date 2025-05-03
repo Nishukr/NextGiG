@@ -54,7 +54,7 @@ To use images in the project:
 
 
 ```markdown
-![Student Dashboard](./frontend/src/assets/Screenshot%20(7).png)
+![Student Dashboard](./assets/Screenshot%20(7).png)
 
 ![Recruiter Dashboard](./frontend/src/assets/recruiter-dashboard.png)
 ```
