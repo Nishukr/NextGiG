@@ -49,17 +49,14 @@ To use images in the project:
 
 ---
 
-## 📸 Sample Screenshots
+## Dashboards
 
+### Student Dashboard
+![Student Dashboard](frontend/src/assets/Screenshot%20(7).png)
 
+### Recruiter Dashboard
+![Recruiter Dashboard](frontend/src/assets/recruiter-dashboard.png)
 
-```markdown
-![Student Dashboard](./assets/Screenshot%20(7).png)
-
-![Recruiter Dashboard](./frontend/src/assets/recruiter-dashboard.png)
-```
-
----
 
 ## 🚀 Getting Started
 
