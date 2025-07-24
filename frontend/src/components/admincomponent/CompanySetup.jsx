@@ -14,6 +14,7 @@ import useGetCompanyById from "@/hooks/useGetCompanyById.jsx";
 const CompanySetup = () => {
   const params = useParams();
   useGetCompanyById(params.id);
+
   const [input, setInput] = useState({
     name: "",
     description: "",
@@ -21,8 +22,8 @@ const CompanySetup = () => {
     location: "",
     file: null,
   });
-  const { singleCompany } = useSelector((store) => store.company);
 
+  const { singleCompany } = useSelector((store) => store.company);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -57,9 +58,7 @@ const CompanySetup = () => {
           withCredentials: true,
         }
       );
-      console.log(res); // Debugging API response
 
-      // Assuming a successful response has a `message` property
       if (res.status === 200 && res.data.message) {
         toast.success(res.data.message);
         navigate("/admin/companies");
@@ -88,20 +87,24 @@ const CompanySetup = () => {
   return (
     <div>
       <Navbar />
-      <div className="max-w-xl mx-auto my-10">
+      <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 my-10">
         <form onSubmit={submitHandler}>
-          <div className="flex items-center gap-5 p-8">
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 p-4 sm:p-8">
             <Button
+              type="button"
               onClick={() => navigate("/admin/companies")}
               variant="outline"
-              className="flex items-center gap-2 text-gray-500 font-semibold"
+              className="flex items-center gap-2 text-gray-500 font-semibold w-fit"
             >
               <ArrowLeft />
               <span>Back</span>
             </Button>
             <h1 className="font-bold text-xl">Company Setup</h1>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+
+          {/* Form Fields */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 px-4 sm:px-0">
             <div>
               <Label>Company Name</Label>
               <Input
@@ -138,7 +141,7 @@ const CompanySetup = () => {
                 onChange={changeEventHandler}
               />
             </div>
-            <div>
+            <div className="sm:col-span-2">
               <Label>Logo</Label>
               <Input
                 type="file"
@@ -147,16 +150,20 @@ const CompanySetup = () => {
               />
             </div>
           </div>
-          {loading ? (
-            <Button className="w-full my-4">
-              {" "}
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait{" "}
-            </Button>
-          ) : (
-            <Button type="submit" className="w-full my-4">
-              Update
-            </Button>
-          )}
+
+          {/* Submit Button */}
+          <div className="px-4 sm:px-0">
+            {loading ? (
+              <Button className="w-full my-4" disabled>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Please wait
+              </Button>
+            ) : (
+              <Button type="submit" className="w-full my-4">
+                Update
+              </Button>
+            )}
+          </div>
         </form>
       </div>
     </div>

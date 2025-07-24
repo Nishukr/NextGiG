@@ -24,7 +24,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <div >
       <Navbar />
       <Header />
       <Categories />
