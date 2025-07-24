@@ -7,30 +7,15 @@ const filterData = [
   {
     filterType: "Location",
     array: [
-      "Delhi",
-      "Mumbai",
-      "Kolhapur",
-      "Pune",
-      "Bangalore",
-      "Hyderabad",
-      "Chennai",
-      "Remote",
+      "Delhi", "Mumbai", "Kolhapur", "Pune",
+      "Bangalore", "Hyderabad", "Chennai", "Remote",
     ],
   },
   {
     filterType: "Technology",
     array: [
-      "Mern",
-      "React",
-      "Data Scientist",
-      "Fullstack",
-      "Node",
-      "Python",
-      "Java",
-      "frontend",
-      "backend",
-      "mobile",
-      "desktop",
+      "Mern", "React", "Data Scientist", "Fullstack",
+      "Node", "Python", "Java", "frontend", "backend", "mobile", "desktop",
     ],
   },
   {
@@ -45,32 +30,38 @@ const filterData = [
 
 const Filter = () => {
   const [selectedValue, setSelectedValue] = useState("");
-  const handleChange = (value) => {
-    setSelectedValue(value);
-  };
+  const handleChange = (value) => setSelectedValue(value);
+
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(setSearchedQuery(selectedValue));
   }, [selectedValue]);
 
   return (
-    <div className="w-full bg-white rounded-md">
-      <h1 className="font-bold text-lg">Filter Jobs</h1>
-      <hr className="mt-3" />
+    <div className="w-full bg-white rounded-md p-4 shadow-md">
+      <h1 className="font-bold text-xl md:text-lg mb-4">Filter Jobs</h1>
+      <hr className="mb-4" />
       <RadioGroup value={selectedValue} onValueChange={handleChange}>
         {filterData.map((data, index) => (
-          <div key={index}>
-            <h2 className="font-bold text-lg">{data.filterType}</h2>
+          <div key={index} className="mb-5">
+            <h2 className="font-semibold text-lg md:text-base mb-2">
+              {data.filterType}
+            </h2>
 
-            {data.array.map((item, indx) => {
-              const itemId = `Id${index}-${indx}`;
-              return (
-                <div key={itemId} className="flex items-center space-x-2 my-2">
-                  <RadioGroupItem value={item} id={itemId}></RadioGroupItem>
-                  <label htmlFor={itemId}>{item}</label>
-                </div>
-              );
-            })}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-2">
+              {data.array.map((item, indx) => {
+                const itemId = `Id${index}-${indx}`;
+                return (
+                  <div key={itemId} className="flex items-center space-x-2">
+                    <RadioGroupItem value={item} id={itemId} />
+                    <label htmlFor={itemId} className="text-sm">
+                      {item}
+                    </label>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         ))}
       </RadioGroup>

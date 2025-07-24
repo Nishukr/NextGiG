@@ -40,3 +40,11 @@
 .read-the-docs {
   color: #888;
 }
+
+
+
+
+
+#root {
+  @apply min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 text-white;
+}

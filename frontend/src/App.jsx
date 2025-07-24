@@ -18,7 +18,7 @@ import PostJob from "./components/admincomponent/PostJob";
 import Applicants from "./components/admincomponent/Applicants";
 import ProtectedRoute from "./components/admincomponent/ProtectedRoute";
 import Creator from "./components/creator/Creator.jsx";
-import Resume from "./components/Resume/Resume.jsx";
+import ResumeMatcher from "./components/components_lite/ResumeMatcher.jsx";
 
 const appRouter = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -64,7 +64,7 @@ const appRouter = createBrowserRouter([
   },
   {
     path:"/Resume",
-    element: <Resume/>
+    element: <ResumeMatcher/>
   },
 
   // /admin
@@ -122,7 +122,7 @@ const appRouter = createBrowserRouter([
 
 function App() {
   return (
-    <div>
+    <div >
       <RouterProvider router={appRouter}></RouterProvider>
     </div>
   );

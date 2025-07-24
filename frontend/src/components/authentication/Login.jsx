@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components_lite/Navbar";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
-import { Navigate, useNavigate } from "react-router-dom";
-import { RadioGroup } from "../ui/radio-group";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 import { USER_API_ENDPOINT } from "@/utils/data.js";
@@ -14,24 +12,22 @@ import { setLoading, setUser } from "@/redux/authSlice";
 const Login = () => {
   const [input, setInput] = useState({
     email: "",
-    password: "", 
+    password: "",
     role: "",
   });
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, user } = useSelector((store) => store.auth);
+
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
-  };
-  const ChangeFilehandler = (e) => {
-    setInput({ ...input, file: e.target.files?.[0] });
   };
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
     try {
-      dispatch(setLoading(true)); // Start loading
+      dispatch(setLoading(true));
       const res = await axios.post(`${USER_API_ENDPOINT}/login`, input, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
@@ -44,7 +40,7 @@ const Login = () => {
     } catch (error) {
       toast.error("Login failed");
     } finally {
-      dispatch(setLoading(false)); // End loading
+      dispatch(setLoading(false));
     }
   };
 
@@ -55,40 +51,43 @@ const Login = () => {
   }, []);
 
   return (
-    <div>
-      <Navbar></Navbar>
-      <div className="flex items-center justify-center max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gray-100">
+      <Navbar />
+
+      <div className="flex justify-center px-4">
         <form
           onSubmit={submitHandler}
-          className="w-1/2 border border-gray-500 rounded-md p-4 my-10"
+          className="w-full max-w-md bg-white rounded-xl shadow-md p-6 mt-10 mb-6"
         >
-          <h1 className="font-bold text-xl mb-5 text-center text-blue-600">
-            Login
-          </h1>
-          <div className="my-2">
+          <h1 className="text-2xl font-bold text-center text-blue-600 mb-6">Login</h1>
+
+          <div className="mb-4">
             <Label>Email</Label>
             <Input
               type="email"
-              value={input.email}
               name="email"
+              value={input.email}
               onChange={changeEventHandler}
               placeholder="johndoe@gmail.com"
-            ></Input>
+              className="mt-1"
+            />
           </div>
-          <div className="my-2">
+
+          <div className="mb-4">
             <Label>Password</Label>
             <Input
               type="password"
-              value={input.password}
               name="password"
+              value={input.password}
               onChange={changeEventHandler}
               placeholder="********"
-            ></Input>
+              className="mt-1"
+            />
           </div>
-           
 
-          <div className="flex items-center justify-between">
-            <RadioGroup className="flex items-center gap-4 my-5 ">
+          <div className="mb-4">
+            <Label className="block mb-2">Role</Label>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 my-4">
               <div className="flex items-center space-x-2">
                 <Input
                   type="radio"
@@ -98,7 +97,7 @@ const Login = () => {
                   onChange={changeEventHandler}
                   className="cursor-pointer"
                 />
-                <Label htmlFor="r1">Student</Label>
+                <Label htmlFor="r1" className="text-lg sm:text-base">Student</Label>
               </div>
               <div className="flex items-center space-x-2">
                 <Input
@@ -109,36 +108,39 @@ const Login = () => {
                   onChange={changeEventHandler}
                   className="cursor-pointer"
                 />
-                <Label htmlFor="r2">Recruiter</Label>
-              </div>
-            </RadioGroup>
-          </div>
-
-          {loading ? (
-            <div className="flex items-center justify-center my-10">
-              <div className="spinner-border text-blue-600" role="status">
-                <span className="sr-only">Loading...</span>
+                <Label htmlFor="r2" className="text-lg sm:text-base">Recruiter</Label>
               </div>
             </div>
-          ) : (
-            <button
-              type="submit"
-              className="w-3/4 py-3 my-3 text-white flex items-center justify-center max-w-7xl mx-auto bg-blue-600 hover:bg-blue-800/90 rounded-md"
-            >
-              Login
-            </button>
-          )}
-
-          <div className=" ">
-            <p className="text-gray-700  text-center my-2">
-              Create new Account{" "}
-              <Link to="/register" className="text-blue-700">
-                <button className=" w-1/2 py-3 my-3 text-white flex items-center justify-center max-w-7xl mx-auto bg-green-600 hover:bg-green-800/90 rounded-md">
-                  Register
-                </button>
-              </Link>
-            </p>
           </div>
+
+
+
+          <div className="mt-6">
+            {loading ? (
+              <div className="flex justify-center py-2">
+                <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-blue-500"></div>
+              </div>
+            ) : (
+              <button
+                type="submit"
+                className="w-full py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition-all"
+              >
+                Login
+              </button>
+            )}
+          </div>
+
+          <p className="text-center text-sm text-gray-600 mt-6">
+            Don’t have an account?
+          </p>
+          <Link to="/register">
+            <button
+              type="button"
+              className="w-full py-3 mt-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition-all"
+            >
+              Register
+            </button>
+          </Link>
         </form>
       </div>
     </div>
