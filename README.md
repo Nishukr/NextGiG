@@ -41,13 +41,7 @@ To use images in the project:
 - Store them in:  
   `frontend/src/assets`
 
-- Import them like this in React components:
-  ```js
-  import myImage from '../assets/myImage.png';
-  <img src={myImage} alt="Description" />
-  ```
 
----
 
 ## Dashboards
 
